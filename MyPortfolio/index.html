@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Creator | Anime Store & Portfolio</title>
+    <style>
+        /* === GLOBAL RESET & FONTS === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* === ANIMATED GRADIENT BODY BACKGROUND === */
+        body {
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #000000, #1a0b2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === MODERN NAVBAR === */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00f2fe;
+        }
+
+        /* === HERO SECTION === */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            animation: slideUp 1s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+
+        .highlight-text {
+            color: transparent;
+            -webkit-text-stroke: 1px #00f2fe;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin-bottom: 40px;
+            animation: slideUp 1.2s cubic-bezier(0.1, 0, 0.1, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === THE STOREHOUSE SECTION === */
+        .store-section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: left;
+            border-left: 5px solid #00f2fe;
+            padding-left: 20px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .app-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 242, 254, 0.2);
+            border-color: rgba(0, 242, 254, 0.5);
+        }
+
+        .app-banner {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s ease;
+        }
+
+        .app-card:hover .app-banner {
+            transform: scale(1.05);
+        }
+
+        .app-content {
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .app-category {
+            font-size: 0.9rem;
+            color: #00f2fe;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .app-desc {
+            color: #b3b3b3;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-download {
+            background: linear-gradient(90deg, #333, #111);
+            color: #888;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #444;
+            cursor: not-allowed;
+        }
+
+        .btn-wishlist {
+            background: transparent;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #00f2fe;
+            transition: all 0.3s ease;
+        }
+
+        .btn-wishlist:hover {
+            background: rgba(0, 242, 254, 0.1);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        /* === PARALLAX ANIME IMAGES === */
+        .creator-section-wrapper {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .creator-section-wrapper .creator-fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.6; 
+        }
+
+        /* Mount Fuji Night Image */
+        .bg-fuji {
+            background-image: url('image anime.jpg');
+        }
+
+        .creator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1400px;
+            padding: 0 50px;
+            z-index: 2;
+        }
+
+        .poetry-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .poetry-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            line-height: 2;
+            color: #e0e0e0;
+            font-style: italic;
+            border-left: 3px solid #b829e3;
+            padding-left: 20px;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        /* Pink Sunrise Tree Image */
+        .bg-sunrise {
+            background-image: url('anime image 2.jpg');
+            top: 100vh; 
+            height: 100vh;
+        }
+
+        /* Green Fields Image */
+        .bg-fields {
+            background-image: url('anime image.jpg');
+            top: 200vh; 
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">HUB.</div>
+        <ul>
+            <li><a href="#store">Store</a></li>
+            <li><a href="#creator">Creator</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Next-Gen <br><span class="highlight-text">Experiences.</span></h1>
+        <p>A high-school senior by day, a visionary developer by night. Balancing my academic goals with crafting immersive digital worlds.</p>
+    </header>
+
+    <div class="parallax-layer bg-sunrise"></div>
+
+    <section id="store" class="store-section">
+        <h2 class="section-title">The Storehouse</h2>
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-banner" style="background-image: url('website image.jpg');"></div>
+                <div class="app-content">
+                    <span class="app-category">Racing / Simulation</span>
+                    <h3 class="app-title">Velocity Drift</h3>
+                    <p class="app-desc">A high-speed car racing experience built in Unity. Master the art of drifting with realistic physics, custom tracks, and immersive driving mechanics.</p>
+                    <div class="btn-container">
+                        <a href="#" class="btn-download">🔒 In Development</a>
+                        <a href="#" class="btn-wishlist">Notify Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="parallax-layer bg-fields"></div>
+
+    <div class="creator-section-wrapper">
+        <div class="creator-fixed-bg bg-fuji"></div>
+        <section id="creator" class="creator-grid">
+            <div style="background: rgba(0,0,0,0.6); padding: 30px; border-radius: 20px; backdrop-filter: blur(5px);">
+                <h2 class="section-title" style="border-color: #b829e3; font-size: 2.5rem;">The Architect</h2>
+                <p style="color: #ddd; font-size: 1.2rem; line-height: 1.8;">
+                    I am currently a Class 12 student (batch 2026-27), preparing to crack the CLAT exam and pursue a career in law. When the textbooks close, the code editor opens, balancing relations and functions with rigidbodies in Unity.
+                </p>
+            </div>
+            
+            <div class="poetry-box">
+                <p style="color: #aaa; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.8rem;">Unfiltered Thoughts</p>
+                <div class="poetry-text">
+                    "Between the lines of law and the lines of code,<br>
+                    I walk a silent, uncharted road.<br>
+                    A broken poet in a digital space,<br>
+                    Building new worlds at my own pace."
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
